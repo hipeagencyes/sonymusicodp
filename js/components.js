@@ -2769,3 +2769,20 @@ function closePopup() {
   const popup = document.getElementById('popup');
   popup.classList.remove('active'); // Oculta el pop-up
 }
+
+
+// ===============================
+// Marca en <body> cuando se está en la última página del slider
+// (oculta el botón fijo "Volver a OLGADEPALMA", que pasa a estar abajo)
+// ===============================
+(function () {
+  function bindLastSlideClass() {
+    const slider = window.sliderHeadingsInstance;
+    if (!slider || !slider.on) return setTimeout(bindLastSlideClass, 200);
+    const update = () => document.body.classList.toggle('is-last-slide', !!slider.isEnd);
+    slider.on('slideChange', update);
+    slider.on('transitionEnd', update);
+    update();
+  }
+  bindLastSlideClass();
+})();
