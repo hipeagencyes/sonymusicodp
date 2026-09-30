@@ -1,0 +1,114 @@
+/* Tema claro compartido (GTS y Sony): blanco + negro, con un único color de acento por página */
+:root {
+  --ink: #111111;
+  --bg: #fafafa;
+}
+.gts-page { --accent: #ff1f5a; }
+.sony-page { --accent: #f80707; } /* rojo del branding de Sony Music */
+
+body {
+  background-color: var(--bg);
+}
+
+/* Sin las sombras oscuras pensadas para fondos negros */
+.light-page .logo__img,
+.light-page .logo__img_home,
+.light-page .logo__img_footer,
+.light-page .material-icons,
+.light-page .slider-headings__slide h2,
+.light-page .slider__dot,
+.light-page .slider__dot:before,
+.light-page .slider__dot:after {
+  text-shadow: none;
+  filter: none;
+}
+
+.light-page .light-dark-text {
+  color: var(--ink);
+}
+
+/* Logo de portada: GTS (horizontal) y Sony */
+.light-page .logo__img_home {
+  width: 520px;
+  max-width: 80vw;
+}
+@media screen and (max-width: 768px) {
+  .light-page .logo__img_home { width: 240px; }
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .light-page .logo__img_home { width: 380px; }
+}
+
+/* Tarjetas de artista */
+.light-page .artist-card {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+.light-page .artist-card span {
+  background: rgba(0, 0, 0, 0.55);
+  border-top: 2px solid var(--accent);
+}
+.light-page .artist-card img {
+  transition: transform 0.4s ease;
+}
+.light-page .artist-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Dots y flechas del slider en negro, activo en rosa */
+.light-page .slider-headings .slider__dot:before {
+  background-color: var(--ink);
+}
+.light-page .slider-headings .slider__dot:after {
+  border-color: var(--ink);
+}
+.light-page .slider-headings .slider__dot_active:before {
+  background-color: var(--accent);
+}
+.light-page .slider-headings .slider__dot_active:after {
+  border-color: var(--accent);
+}
+.light-page .slider__arrow-inner {
+  color: var(--ink);
+}
+.light-page .slider__arrow-inner:hover {
+  color: var(--accent);
+}
+
+/* Footer de contacto */
+.light-page .footer-container,
+.light-page .footer-link {
+  color: var(--ink);
+}
+.light-page .footer-link:hover {
+  color: var(--accent);
+}
+.light-page .spinner__path {
+  stroke: var(--accent);
+}
+
+/* Enlace al otro roster (última página): contorno fino, discreto */
+.light-page .roster-switch {
+  background-color: transparent;
+  border-color: rgba(17, 17, 17, 0.35);
+  color: var(--ink);
+}
+.light-page .roster-switch:hover {
+  color: var(--ink);
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: var(--accent);
+}
+
+/* Botón "Volver" en gris claro sobre fondo blanco */
+.light-page .fixed-button {
+  background-color: rgba(0, 0, 0, 0.28);
+  opacity: 1;
+  box-shadow: none;
+}
+.light-page .fixed-button:hover {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+/* Etiqueta de sección (IBERIA / LATIN) */
+.light-page .sony-grid__label {
+  color: var(--ink);
+}

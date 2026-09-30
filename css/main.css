@@ -4508,26 +4508,50 @@ it-text__word {
 /* Ajusta el diseño de las tarjetas de artistas */
 /* Ajusta el diseño de las tarjetas de artistas */
 .sony-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 columnas */
-  grid-template-rows: repeat(3, auto); /* 3 filas */
-  gap: 20px; /* Espaciado entre las tarjetas */
-  padding: 100px;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  width: 100%; /* Ocupa todo el ancho disponible */
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
-  margin: 0 auto; /* Centra horizontalmente */
-  overflow: hidden; /* Evita el scroll dentro del contenedor */
-  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+  /* js/lineup.js reparte los artistas en páginas y fija --cols, --card y --gap según la pantalla */
+  --cols: 6;
+  --card: 160px;
+  --gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: var(--gap);
+  width: calc(var(--cols) * var(--card) + (var(--cols) - 1) * var(--gap));
+  max-width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Etiqueta de sección (IBERIA / LATIN) */
+.sony-grid__label {
+  flex: 0 0 100%;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.sony-grid__label:before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  margin-right: 14px;
+  background: var(--accent, #fff);
 }
 
 /* Ajusta el diseño de las tarjetas */
 .artist-card {
   position: relative; /* Para posicionar el texto dentro de la imagen */
-  width: 100%;
-  max-width: 200px;
-  aspect-ratio: 1 / 1; /* Formato cuadrado 1:1 */
+  flex: 0 0 var(--card);
+  width: var(--card);
+  height: var(--card);
   overflow: hidden;
   border-radius: 0px;
 }
@@ -4546,7 +4570,7 @@ it-text__word {
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 1rem; /* Tamaño del texto */
+  font-size: clamp(9px, calc(var(--card) * 0.08), 16px); /* Escala con la tarjeta */
   font-weight: 600; /* Texto en negrita */
   color: white; /* Color del texto */
   text-transform: uppercase; /* Texto en mayúsculas */
@@ -4659,29 +4683,15 @@ it-text__word {
 
 
 
-/* Responsivo: Ajusta el diseño solo en pantallas pequeñas */
-@media screen and (max-width: 768px) {
-  .sony-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas en móvil */
-    gap: 15px; /* Espaciado entre las tarjetas */
-    padding: 80px 20px; /* Espaciado interno del contenedor */
-  }
-
-  .artist-card {
-    max-width: 100%; /* La tarjeta ocupa todo el ancho disponible */
-  }
-}
-
-
 @media screen and (max-width: 768px) {
   .artist-card span {
-font-size: 12px; /* Tamaño más pequeño en móvil */ 
-background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la legibilidad */
-padding: 2px 2px; /* Espaciado interno del texto */ }
+    padding: 2px 2px;
+  }
+  .sony-grid__label {
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+  }
 }
-
-
 
 /* Contenedor del logo */
 .logo-container {
@@ -4690,9 +4700,9 @@ padding: 2px 2px; /* Espaciado interno del texto */ }
 }
 
 .logo__img_footer {
-  width: 800px; /* Tamaño más grande del logo */
+  width: 150px; /* Logo pequeño: el protagonismo lo tienen los botones */
   height: auto; /* Mantén la proporción del logo */
-  margin-bottom: 50px;
+  margin-bottom: 18px;
 }
 
 /* Contenedor principal */
@@ -4700,10 +4710,10 @@ padding: 2px 2px; /* Espaciado interno del texto */ }
   display: flex;
   align-items: center; /* Centra verticalmente los elementos */
   justify-content: center; /* Centra horizontalmente los elementos */
-  gap: 100px; /* Espaciado horizontal entre los elementos */
+  gap: 40px; /* Espaciado horizontal entre los elementos */
   padding: 0 20px; /* Espaciado lateral */
   font-family: 'Montserrat', sans-serif; /* Fuente */
-  font-size: 25px; /* Tamaño de texto */
+  font-size: 15px; /* Tamaño de texto */
   color: #ffffff; /* Color del texto */
   font-weight: 100 !important;
   
@@ -4712,7 +4722,7 @@ padding: 2px 2px; /* Espaciado interno del texto */ }
 /* Estilo para el nombre */
 .footer-name {
   font-weight: 100 !important; /* Texto en negrita */
-  font-size: 25px; /* Tamaño de texto */
+  font-size: 15px; /* Tamaño de texto */
 }
 
 /* Estilo para los enlaces */
@@ -4720,12 +4730,12 @@ padding: 2px 2px; /* Espaciado interno del texto */ }
   text-decoration: none; /* Elimina el subrayado */
   color: #ffffff; /* Color del texto */
   font-weight: 100 !important; /* Texto en negrita */
-  font-size: 25px; /* Tamaño de texto */
+  font-size: 15px; /* Tamaño de texto */
 }
 
 .footer-link i {
   margin-right: 8px; /* Espaciado entre el icono y el texto */
-  font-size: 25px; /* Tamaño más grande del icono */
+  font-size: 16px; /* Tamaño más grande del icono */
 }
 
 
@@ -4739,12 +4749,12 @@ padding: 2px 2px; /* Espaciado interno del texto */ }
   }
 
   .footer-link {
-    font-size: 16px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    font-size: 13px; /* Reduce el tamaño del texto en pantallas pequeñas */
     font-weight: 100; /* Texto en negrita */
   }
 
   .footer-name {
-    font-size: 16px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    font-size: 13px; /* Reduce el tamaño del texto en pantallas pequeñas */
     font-weight: 100 !important; /* Texto en negrita */
   }
 }
@@ -4768,35 +4778,15 @@ padding: 2px 2px; /* Espaciado interno del texto */ }
 
 /* Responsive para tablets (iPads) */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-  .sony-grid {
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas en tablet */
-    gap: 20px;
-    padding: 80px 40px;
-  }
-
-  .artist-card span {
-    font-size: 16px;
-    padding: 4px 6px;
-  }
-
   .footer-container {
     flex-direction: row;
-    gap: 40px;
-    font-size: 20px;
-  }
-
-  .footer-link,
-  .footer-name {
-    font-size: 20px;
+    gap: 32px;
   }
 
   .logo__img_home {
     width: 400px;
   }
 
-  .logo__img_footer {
-    width: 150px;
-  }
 }
 
 
@@ -4804,13 +4794,13 @@ padding: 2px 2px; /* Espaciado interno del texto */ }
 .roster-switch {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 26px;
+  gap: 16px;
+  padding: 20px 44px;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 40px;
+  border-radius: 60px;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 300;
   letter-spacing: 0.03em;
   text-decoration: none;
@@ -4824,11 +4814,11 @@ padding: 2px 2px; /* Espaciado interno del texto */ }
   opacity: 1;
 }
 .roster-switch__logo {
-  height: 26px;
+  height: 38px;
   width: auto;
 }
 .roster-switch__logo--sony {
-  height: 24px;
+  height: 34px;
 }
 
 /* Contenedor de los botones finales */
@@ -4837,11 +4827,11 @@ padding: 2px 2px; /* Espaciado interno del texto */ }
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  margin-top: 60px;
+  gap: 24px;
+  margin: 0 0 70px;
 }
 .roster-switch__logo--odp {
-  height: 14px;
+  height: 20px;
 }
 
 /* En la última página el botón "Volver" fijo de arriba se oculta (está abajo) */
@@ -4877,20 +4867,46 @@ body.is-last-slide .fixed-button {
     letter-spacing: 0;
   }
   .logo__img_footer {
-    width: 260px;
-    margin-bottom: 20px;
+    width: 120px;
+    margin-bottom: 14px;
   }
   .roster-actions {
-    margin-top: 40px;
+    margin: 0 0 44px;
     flex-direction: column;
     gap: 12px;
   }
   .roster-switch {
-    padding: 9px 18px;
-    font-size: 0.8rem;
-    gap: 8px;
+    padding: 13px 26px;
+    font-size: 0.95rem;
+    gap: 10px;
   }
-  .roster-switch__logo { height: 20px; }
-  .roster-switch__logo--sony { height: 17px; }
-  .roster-switch__logo--odp { height: 11px; }
+  .roster-switch__logo { height: 26px; }
+  .roster-switch__logo--sony { height: 22px; }
+  .roster-switch__logo--odp { height: 14px; }
+}
+
+/* Móvil: el slider es vertical, así que los puntos pasan a un lateral */
+@media screen and (max-width: 767px) {
+  .slider-headings__footer {
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    right: 2px;
+    margin: 0;
+    width: auto;
+    transform: translateY(-50%);
+  }
+  .slider-headings .slider__dot {
+    width: 12px;
+    height: 12px;
+    margin: 6px 0;
+  }
+  .slider-headings .slider__dot._visible {
+    display: block;
+  }
+}
+
+/* Slider en vertical (móvil): Swiper lo necesita porque vendor.css no incluye estas reglas */
+.swiper-container-vertical > .swiper-wrapper {
+  flex-direction: column;
 }

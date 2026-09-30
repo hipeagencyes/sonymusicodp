@@ -2252,23 +2252,19 @@ var
   $heading = $slider.find('h2'),
   $description = $slider.find('p'),
   tl = new TimelineMax(),
+  mobileMQ = window.matchMedia('(max-width: 767px)'),
   slider = new Swiper($slider[0], { 
+    // En móvil se desliza hacia arriba/abajo (como Instagram); en escritorio, lateral
+    direction: mobileMQ.matches ? 'vertical' : 'horizontal',
     simulateTouch: false,
     allowTouchMove: true,
     effect: 'fade',
     fadeEffect: {
       crossFade: true
     },
-    speed: 0,
+    speed: 350,
     centeredSlides: true,
-    mousewheel: {
-      enabled:true,
-      releaseOnEdges: false,
-      forceToAxis: false,
-      sensitivity: 1,
-      thresholdDelta: 1,
-      thresholdTime: 0
-    },
+    mousewheel: false, // la rueda se gestiona abajo: un gesto = una diapositiva
     keyboard: {
       enabled: true
     },
@@ -2292,6 +2288,34 @@ var
   });
 
   window.sliderHeadingsInstance = slider;
+
+  // Rueda/trackpad: un gesto avanza una sola diapositiva. Tras cada salto se ignora la
+  // inercia hasta que la rueda se detiene, para que no pase de golpe por varias páginas.
+  (function () {
+    var acc = 0, lastEvent = 0, lockedAt = 0, locked = false;
+    $slider[0].addEventListener('wheel', function (e) {
+      e.preventDefault();
+      var now = Date.now(), gap = now - lastEvent;
+      lastEvent = now;
+      if (locked) {
+        if (now - lockedAt > 600 && gap > 120) { locked = false; acc = 0; }
+        else return;
+      }
+      if (gap > 250) acc = 0;
+      acc += Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if (Math.abs(acc) >= 50) {
+        if (acc > 0) slider.slideNext(); else slider.slidePrev();
+        locked = true;
+        lockedAt = now;
+        acc = 0;
+      }
+    }, { passive: false });
+  })();
+
+  // Si se cruza el breakpoint (girar el móvil, redimensionar), recarga para cambiar la dirección
+  var onBreakpointChange = function () { window.location.reload(); };
+  if (mobileMQ.addEventListener) { mobileMQ.addEventListener('change', onBreakpointChange); }
+  else { mobileMQ.addListener(onBreakpointChange); }
   
 
   // ===============================

@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Oswald:wght@500&family=Poppins:wght@200;300;400;600&family=Material+Icons&display=swap" rel="stylesheet">
 <link href="../css/vendor.css" rel="stylesheet"/>
 <link href="../css/main.css" rel="stylesheet"/>
-<link href="../css/gts.css" rel="stylesheet"/>
+<link href="../css/light.css" rel="stylesheet"/>
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
 <!-- ICONS-->
@@ -21,7 +21,7 @@
 <meta content="../img/content/favicon-32x32" name="msapplication-TileImage"/>
 
 <link href="../img/content/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="../img/content/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/><link href="../img/content/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/><link href="../img/content/manifest.json" rel="manifest"/><meta content="#ffffff" name="theme-color"/></head>
-<body class="gts-page" data-barba="wrapper">
+<body class="light-page gts-page" data-barba="wrapper">
 <!-- Loading Spinner-->
 <svg class="spinner js-spinner d-lg-none d-block" height="65px" viewbox="0 0 66 66" width="65px" xmlns="http://www.w3.org/2000/svg">
 <circle class="spinner__path" cx="33" cy="33" fill="none" r="30" stroke-linecap="round" stroke-width="6"></circle>
@@ -86,55 +86,62 @@ body {
     <a class="logo goto-slide" href="#lineup">
       <img src="../img/gts/logo-gts-black.png" alt="GTS" class="logo__img_home">
     </a>
-    <h2 class="gts-dark-text">
+    <h2 class="light-dark-text">
   ARTIST ROSTER
 </h2>
   </div>
 </div>
 
-<!-- Slide 1 -->
-<div class="swiper-slide slider-headings__slide sony-slide" id="gts-slide-1" data-slide="gts-slide-1" style="background-image: url('../img/gts/fondo-gts-light.jpg'); background-size: cover; background-position: center;">
-  <div class="sony-slide-wrapper">
-    <div class="sony-grid">
-      <div class="artist-card">
-        <img src="../img/gts/pabloalboran.jpg" alt="Pablo Alborán">
-        <span>PABLO ALBORÁN</span>
-      </div>
+<!-- Artistas: js/lineup.js los reparte en diapositivas según la pantalla (orden alfabético) -->
+<div id="artist-source" hidden>
+<div>
       <div class="artist-card">
         <img src="../img/gts/aitana.jpg" alt="Aitana">
         <span>AITANA</span>
-      </div>
-      <div class="artist-card">
-        <img src="../img/gts/davidbisbal.jpg" alt="David Bisbal">
-        <span>DAVID BISBAL</span>
       </div>
       <div class="artist-card">
         <img src="../img/gts/amaia.jpg" alt="Amaia">
         <span>AMAIA</span>
       </div>
       <div class="artist-card">
-        <img src="../img/gts/pablolopez.jpg" alt="Pablo López">
-        <span>PABLO LÓPEZ</span>
+        <img src="../img/gts/anaguerra.jpg" alt="Ana Guerra">
+        <span>ANA GUERRA</span>
       </div>
       <div class="artist-card">
-        <img src="../img/gts/lolaindigo.jpg" alt="Lola Indigo">
-        <span>LOLA INDIGO</span>
+        <img src="../img/gts/chiaraoliver.jpg" alt="Chiara Oliver">
+        <span>CHIARA OLIVER</span>
       </div>
       <div class="artist-card">
-        <img src="../img/gts/vanesamartin.jpg" alt="Vanesa Martín">
-        <span>VANESA MARTÍN</span>
+        <img src="../img/gts/davidbisbal.jpg" alt="David Bisbal">
+        <span>DAVID BISBAL</span>
       </div>
       <div class="artist-card">
         <img src="../img/gts/israelfernandez.jpg" alt="Israel Fernández">
         <span>ISRAEL FERNÁNDEZ</span>
       </div>
       <div class="artist-card">
-        <img src="../img/gts/rozalen.jpg" alt="Rozalén">
-        <span>ROZALÉN</span>
+        <img src="../img/gts/lolaindigo.jpg" alt="Lola Indigo">
+        <span>LOLA INDIGO</span>
       </div>
       <div class="artist-card">
         <img src="../img/gts/malu.jpg" alt="Malú">
         <span>MALÚ</span>
+      </div>
+      <div class="artist-card">
+        <img src="../img/gts/martasanchez.jpg" alt="Marta Sánchez">
+        <span>MARTA SÁNCHEZ</span>
+      </div>
+      <div class="artist-card">
+        <img src="../img/gts/martinurrutia.jpg" alt="Martin Urrutia">
+        <span>MARTIN URRUTIA</span>
+      </div>
+      <div class="artist-card">
+        <img src="../img/gts/pabloalboran.jpg" alt="Pablo Alborán">
+        <span>PABLO ALBORÁN</span>
+      </div>
+      <div class="artist-card">
+        <img src="../img/gts/pablolopez.jpg" alt="Pablo López">
+        <span>PABLO LÓPEZ</span>
       </div>
       <div class="artist-card">
         <img src="../img/gts/paulinarubio.jpg" alt="Paulina Rubio">
@@ -145,48 +152,28 @@ body {
         <span>ROSARIO</span>
       </div>
       <div class="artist-card">
-        <img src="../img/gts/anaguerra.jpg" alt="Ana Guerra">
-        <span>ANA GUERRA</span>
-      </div>
-      <div class="artist-card">
-        <img src="../img/gts/martinurrutia.jpg" alt="Martin Urrutia">
-        <span>MARTIN URRUTIA</span>
-      </div>
-      <div class="artist-card">
-        <img src="../img/gts/chiaraoliver.jpg" alt="Chiara Oliver">
-        <span>CHIARA OLIVER</span>
-      </div>
-      <div class="artist-card">
-        <img src="../img/gts/violetahodar.jpg" alt="Violeta Hódar">
-        <span>VIOLETA HÓDAR</span>
+        <img src="../img/gts/rozalen.jpg" alt="Rozalén">
+        <span>ROZALÉN</span>
       </div>
       <div class="artist-card">
         <img src="../img/gts/ruslana.jpg" alt="Ruslana">
         <span>RUSLANA</span>
       </div>
-    </div>
-  </div>
+      <div class="artist-card">
+        <img src="../img/gts/vanesamartin.jpg" alt="Vanesa Martín">
+        <span>VANESA MARTÍN</span>
+      </div>
+      <div class="artist-card">
+        <img src="../img/gts/violetahodar.jpg" alt="Violeta Hódar">
+        <span>VIOLETA HÓDAR</span>
+      </div>
 </div>
-
+</div>
 
 <!-- Contacto Olga de Palma visible SIEMPRE -->
 
 <div id="contacto" class="swiper-slide slider-headings__slide" style="background-image: url('../img/gts/fondo-gts-light.jpg'); background-size: cover; background-position: center;">
   <div class="slide-content">
-    <!-- Logo en una fila superior -->
-    <div class="logo-container">
-      <img src="../img/OLGADEPALMA.svg" alt="olgadepalma" class="logo__img_footer">
-    </div>
-   <!-- Información en una fila inferior -->
-<div class="footer-container">
-  <span class="footer-name">OLGADEPALMA</span>
-  <a href="mailto:olga@olgadepalma.com" class="footer-link">
-    <i class="fa fa-envelope"></i> olga@olgadepalma.com
-  </a>
-  <a href="https://instagram.com/olgadepalma" target="_blank" class="footer-link">
-    <i class="fa fa-instagram"></i> @olgadepalma
-  </a>
-</div>
 <!-- Botones finales (solo en la última página): otro roster + volver a OLGADEPALMA -->
 <div class="roster-actions">
 <a href="../" class="roster-switch">
@@ -199,6 +186,19 @@ body {
   <img src="../img/ODP.svg" alt="Olga de Palma" class="roster-switch__logo roster-switch__logo--odp">
   <i class="fa fa-long-arrow-right"></i>
 </a>
+</div>
+    <!-- Logo en una fila superior -->
+    <div class="logo-container">
+      <img src="../img/OLGADEPALMA.svg" alt="olgadepalma" class="logo__img_footer">
+    </div>
+   <!-- Información en una fila inferior -->
+<div class="footer-container">
+  <a href="mailto:olga@olgadepalma.com" class="footer-link">
+    <i class="fa fa-envelope"></i> olga@olgadepalma.com
+  </a>
+  <a href="https://instagram.com/olgadepalma" target="_blank" class="footer-link">
+    <i class="fa fa-instagram"></i> @olgadepalma
+  </a>
 </div>
   </div>
 </div>
@@ -256,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script src="../js/vendor.js"></script>
 <script src="../js/plugins/swiper.mousewheel.min.js"></script>
+<script src="../js/lineup.js"></script>
 <script src="../js/components.js"></script>
 
 

@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Oswald:wght@500&family=Poppins:wght@200;300;400;600&family=Material+Icons&display=swap" rel="stylesheet">
 <link href="css/vendor.css" rel="stylesheet"/>
 <link href="css/main.css" rel="stylesheet"/>
+<link href="css/light.css" rel="stylesheet"/>
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
 <!-- ICONS-->
@@ -20,7 +21,7 @@
 <meta content="img/content/favicon-32x32" name="msapplication-TileImage"/>
 
 <link href="img/content/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="img/content/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/><link href="img/content/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/><link href="img/content/manifest.json" rel="manifest"/><meta content="#ffffff" name="theme-color"/></head>
-<body data-barba="wrapper">
+<body class="light-page sony-page" data-barba="wrapper">
 <!-- Loading Spinner-->
 <svg class="spinner js-spinner d-lg-none d-block" height="65px" viewbox="0 0 66 66" width="65px" xmlns="http://www.w3.org/2000/svg">
 <circle class="spinner__path" cx="33" cy="33" fill="none" r="30" stroke-linecap="round" stroke-width="6"></circle>
@@ -241,21 +242,20 @@ body {
 <div class="swiper-wrapper">
 
   <!--portada-->
-<div id="lineup" class="swiper-slide slider-headings__slide" style="background-image: url('img/fotos/fondo.jpeg'); background-size: cover; background-position: center;">
+<div id="lineup" class="swiper-slide slider-headings__slide" style="background-image: url('img/gts/fondo-gts-light.jpg'); background-size: cover; background-position: center;">
   <div class="slide-content">
     <a class="logo goto-slide" href="#lineup">
-      <img src="img/logo sony.svg" alt="Sony Music" class="logo__img_home">
+      <img src="img/logo-sony-dark.svg" alt="Sony Music" class="logo__img_home">
     </a>
-    <h2 class="white-text">
+    <h2 class="light-dark-text">
   ARTIST ROSTER
 </h2>
   </div>
 </div>
 
-<!-- Slide 1 -->
-<div class="swiper-slide slider-headings__slide sony-slide" id="sony-slide-1" data-slide="sony-slide-1" style="background-image: url('img/fotos/fondo.jpeg'); background-size: cover; background-position: center;">
-  <div class="sony-slide-wrapper">
-    <div class="sony-grid">
+<!-- Artistas: js/lineup.js los reparte en diapositivas según la pantalla (orden alfabético dentro de cada grupo) -->
+<div id="artist-source" hidden>
+<div data-section="IBERIA">
       <div class="artist-card" onclick="showPopup('ABRAHAM MATEO')">
         <img src="img/fotos/abrahammateo.webp" alt="Abraham Mateo">
         <span>ABRAHAM MATEO</span>
@@ -264,107 +264,69 @@ body {
         <img src="img/fotos/alejandrosanz.jpeg" alt="Alejandro Sanz">
         <span>ALEJANDRO SANZ</span>
       </div>
+      <div class="artist-card" onclick="showPopup('AMAIA MONTERO')">
+        <img src="img/fotos/amaya.jpeg" alt="Amaia Montero">
+        <span>AMAIA MONTERO</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('AMARAL')">
+        <img src="img/fotos/amaral.jpeg" alt="Amaral">
+        <span>AMARAL</span>
+      </div>
       <div class="artist-card" onclick="showPopup('ANA MENA')">
         <img src="img/fotos/anamena.webp" alt="Ana Mena">
         <span>ANA MENA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('C. TANGANA')">
-        <img src="img/fotos/ctangana.jpeg" alt="C. Tangana">
-        <span>C. TANGANA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('LIA KALI')">
-        <img src="img/fotos/liakali.jpeg" alt="Lia Kali">
-        <span>LIA KALI</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('BAD BUNNY')">
-        <img src="img/fotos/badbunny.jpeg" alt="Bad Bunny">
-        <span>BAD BUNNY</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('BEÉLE')">
-        <img src="img/fotos/beele.jpeg" alt="Beéle">
-        <span>BEÉLE</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('SHAKIRA')">
-        <img src="img/fotos/shakira.jpeg" alt="Shakira">
-        <span>SHAKIRA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('MANUEL TURIZO')">
-        <img src="img/fotos/manuelturizo.jpg" alt="Manuel Turizo">
-        <span>MANUEL TURIZO</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('BELÉN AGUILERA')">
-        <img src="img/fotos/belenaguilera.jpeg" alt="Belén Aguilera">
-        <span>BELÉN AGUILERA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('DELLAFUENTE')">
-        <img src="img/fotos/dellafuente.jpg" alt="Dellafuente">
-        <span>DELLAFUENTE</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('MAFALDA CARDENAL')">
-        <img src="img/fotos/mafalda.jpeg" alt="Mafalda Cardenal">
-        <span>MAFALDA CARDENAL</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('YERAI CORTÉS')">
-        <img src="img/fotos/YeraiCOrtes.jpeg" alt="Yerai Cortés">
-        <span>YERAI CORTÉS</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('CATRIEL Y PACO AMOROSO')">
-        <img src="img/fotos/catrielypacoamoroso.jpeg" alt="Catriel y Paco Amoroso">
-        <span>CATRIEL Y PACO AMOROSO</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('TINI')">
-        <img src="img/fotos/tini.jpg" alt="Tini">
-        <span>TINI</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('RELS B')">
-        <img src="img/fotos/relsb.jpeg" alt="Rels B">
-        <span>RELS B</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('CARMINHO')">
-        <img src="img/fotos/Carminho.jpeg" alt="Carminho">
-        <span>CARMINHO</span>
       </div>
       <div class="artist-card" onclick="showPopup('ARDE BOGOTÁ')">
         <img src="img/fotos/ardebogota.jpeg" alt="Arde Bogotá">
         <span>ARDE BOGOTÁ</span>
       </div>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Slide 2 -->
-<div class="swiper-slide slider-headings__slide sony-slide" id="sony-slide-2" data-slide="sony-slide-2" style="background-image: url('img/fotos/fondo.jpeg'); background-size: cover; background-position: center;">
-  <div class="sony-slide-wrapper">
-    <div class="sony-grid">
-      <div class="artist-card" onclick="showPopup('DUKI')">
-        <img src="img/fotos/duki.jpeg" alt="Duki">
-        <span>DUKI</span>
+      <div class="artist-card" onclick="showPopup('BB TRICKZ')">
+        <img src="img/fotos/bbtrickz.jpeg" alt="BB Trickz">
+        <span>BB TRICKZ</span>
       </div>
-      <div class="artist-card" onclick="showPopup('JULIETA')">
-        <img src="img/fotos/julieta.jpeg" alt="Julieta">
-        <span>JULIETA</span>
+      <div class="artist-card" onclick="showPopup('BELÉN AGUILERA')">
+        <img src="img/fotos/belenaguilera.jpeg" alt="Belén Aguilera">
+        <span>BELÉN AGUILERA</span>
       </div>
-      <div class="artist-card" onclick="showPopup('JORGE DREXLER')">
-        <img src="img/fotos/jorgedrexler.jpeg" alt="Jorge Drexler">
-        <span>JORGE DREXLER</span>
+      <div class="artist-card" onclick="showPopup('C. TANGANA')">
+        <img src="img/fotos/ctangana.jpeg" alt="C. Tangana">
+        <span>C. TANGANA</span>
       </div>
-      <div class="artist-card" onclick="showPopup('EMILIA')">
-        <img src="img/fotos/emilia.jpg" alt="Emilia">
-        <span>EMILIA</span>
+      <div class="artist-card" onclick="showPopup('CARMINHO')">
+        <img src="img/fotos/Carminho.jpeg" alt="Carminho">
+        <span>CARMINHO</span>
       </div>
-      <div class="artist-card" onclick="showPopup('LEIVA')">
-        <img src="img/fotos/leiva.jpeg" alt="Leiva">
-        <span>LEIVA</span>
+      <div class="artist-card" onclick="showPopup('CLAUDIA ARENAS')">
+        <img src="img/fotos/claudiaarenas.jpeg" alt="Claudia Arenas">
+        <span>CLAUDIA ARENAS</span>
       </div>
-      <div class="artist-card" onclick="showPopup('INDIA MARTÍNEZ')">
-        <img src="img/fotos/indiamartinez.jpeg" alt="India Martínez">
-        <span>INDIA MARTÍNEZ</span>
+      <div class="artist-card" onclick="showPopup('CRISTINA BAY')">
+        <img src="img/fotos/cristinabay.jpeg" alt="Cristina Bay">
+        <span>CRISTINA BAY</span>
       </div>
-      <div class="artist-card" onclick="showPopup('NATHY PELUSO')">
-        <img src="img/fotos/nathypeluso.webp" alt="Nathy Peluso">
-        <span>NATHY PELUSO</span>
+      <div class="artist-card" onclick="showPopup('CRISTINA LORA')">
+        <img src="img/fotos/cristinalora.jpeg" alt="Cristina Lora">
+        <span>CRISTINA LORA</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('DAMIANO')">
+        <img src="img/fotos/damiano.jpeg" alt="Damiano">
+        <span>DAMIANO</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('DANI MARTÍN')">
+        <img src="img/fotos/danimartin.jpeg" alt="Dani Martín">
+        <span>DANI MARTÍN</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('DELLAFUENTE')">
+        <img src="img/fotos/dellafuente.jpg" alt="Dellafuente">
+        <span>DELLAFUENTE</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('EL NIÑO DE ELCHE')">
+        <img src="img/fotos/elche.jpeg" alt="El Niño de Elche">
+        <span>EL NIÑO DE ELCHE</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('ESTOPA')">
+        <img src="img/fotos/estopa.jpeg" alt="Estopa">
+        <span>ESTOPA</span>
       </div>
       <div class="artist-card" onclick="showPopup('GALE')">
         <img src="img/fotos/gale.jpeg" alt="Gale">
@@ -374,155 +336,49 @@ body {
         <img src="img/fotos/guitarricadelafuente.jpeg" alt="Guitarricadelafuente">
         <span>GUITARRICADELAFUENTE</span>
       </div>
+      <div class="artist-card" onclick="showPopup('INDIA MARTÍNEZ')">
+        <img src="img/fotos/indiamartinez.jpeg" alt="India Martínez">
+        <span>INDIA MARTÍNEZ</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('JULIETA')">
+        <img src="img/fotos/julieta.jpeg" alt="Julieta">
+        <span>JULIETA</span>
+      </div>
       <div class="artist-card" onclick="showPopup('KAPO')">
         <img src="img/fotos/kapo.jpeg" alt="Kapo">
         <span>KAPO</span>
       </div>
-      <div class="artist-card" onclick="showPopup('LALI')">
-        <img src="img/fotos/lali.jpeg" alt="Lali">
-        <span>LALI</span>
+      <div class="artist-card" onclick="showPopup('LEIVA')">
+        <img src="img/fotos/leiva.jpeg" alt="Leiva">
+        <span>LEIVA</span>
       </div>
-      <div class="artist-card" onclick="showPopup('CAMILO')">
-        <img src="img/fotos/camilo.jpeg" alt="Camilo">
-        <span>CAMILO</span>
+      <div class="artist-card" onclick="showPopup('LIA KALI')">
+        <img src="img/fotos/liakali.jpeg" alt="Lia Kali">
+        <span>LIA KALI</span>
       </div>
-      <div class="artist-card" onclick="showPopup('DOMELIPA')">
-        <img src="img/fotos/domelipa.jpeg" alt="Domelipa">
-        <span>DOMELIPA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('DAMIANO')">
-        <img src="img/fotos/damiano.jpeg" alt="Damiano">
-        <span>DAMIANO</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('ROSALÍA')">
-        <img src="img/fotos/rosalia.webp" alt="Rosalía">
-        <span>ROSALÍA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('ESTOPA')">
-        <img src="img/fotos/estopa.jpeg" alt="Estopa">
-        <span>ESTOPA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('RICKY MARTIN')">
-        <img src="img/fotos/rickymartin.jpeg" alt="Ricky Martin">
-        <span>RICKY MARTIN</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('JULIETA VENEGAS')">
-        <img src="img/fotos/julietavenegas.jpeg" alt="Julieta Venegas">
-        <span>JULIETA VENEGAS</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Slide Galería Sony 3 -->
-<div class="swiper-slide slider-headings__slide sony-slide" id="sony-slide-3" style="background-image: url('img/fotos/fondo.jpeg'); background-size: cover; background-position: center;">
-  <div class="sony-slide-wrapper">
-    <div class="sony-grid">
-      <div class="artist-card" onclick="showPopup('RAUW ALEJANDRO')">
-        <img src="img/fotos/rauwalejandro.jpeg" alt="Rauw Alejandro">
-        <span>RAUW ALEJANDRO</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('NICKI NICOLE')">
-        <img src="img/fotos/nickynicole.jpeg" alt="Nicki Nicole">
-        <span>NICKI NICOLE</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('JENNIFER LÓPEZ')">
-        <img src="img/fotos/jenniferlopez.jpeg" alt="Jennifer López">
-        <span>JENNIFER LÓPEZ</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('RESIDENTE')">
-        <img src="img/fotos/residente.jpeg" alt="Residente">
-        <span>RESIDENTE</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('OZUNA')">
-        <img src="img/fotos/ozuna.jpeg" alt="Ozuna">
-        <span>OZUNA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('MALUMA')">
-        <img src="img/fotos/maluma.jpeg" alt="Maluma">
-        <span>MALUMA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('ENRIQUE IGLESIAS')">
-        <img src="img/fotos/enriqueiglesias.jpeg" alt="Enrique Iglesias">
-        <span>ENRIQUE IGLESIAS</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('ROMEO SANTOS')">
-        <img src="img/fotos/romeosantos.jpeg" alt="Romeo Santos">
-        <span>ROMEO SANTOS</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('BECKY G')">
-        <img src="img/fotos/beckyg.jpeg" alt="Becky G">
-        <span>BECKY G</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('CHRISTINA AGUILERA')">
-        <img src="img/fotos/christinaaguilera.jpeg" alt="Christina Aguilera">
-        <span>CHRISTINA AGUILERA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('GLORIA ESTEFAN')">
-        <img src="img/fotos/gloriaestefan.jpeg" alt="Gloria Estefan">
-        <span>GLORIA ESTEFAN</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('NODAL')">
-        <img src="img/fotos/nodal.jpeg" alt="Nodal">
-        <span>NODAL</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('NATALIA LAFOURCADE')">
-        <img src="img/fotos/natalialafourcade.jpeg" alt="Natalia Lafourcade">
-        <span>NATALIA LAFOURCADE</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('THALIA')">
-        <img src="img/fotos/thalia.jpeg" alt="Thalia">
-        <span>THALIA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('LUISA SONZA')">
-        <img src="img/fotos/luisasonza.jpeg" alt="Luisa Sonza">
-        <span>LUISA SONZA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('BIZARRAP')">
-        <img src="img/fotos/bizarrap.jpeg" alt="Bizarrap">
-        <span>BIZARRAP</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('MARC ANTHONY')">
-        <img src="img/fotos/marcanthony.jpeg" alt="Marc Anthony">
-        <span>MARC ANTHONY</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('AMARAL')">
-        <img src="img/fotos/amaral.jpeg" alt="Amaral">
-        <span>AMARAL</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide Galería Sony 4 -->
-<div class="swiper-slide slider-headings__slide sony-slide" id="sony-slide-4" style="background-image: url('img/fotos/fondo.jpeg'); background-size: cover; background-position: center;">
-  <div class="sony-slide-wrapper">
-    <div class="sony-grid">
-      <div class="artist-card" onclick="showPopup('NATTI NATASHA')">
-        <img src="img/fotos/nattinatasha.jpeg" alt="Natti Natasha">
-        <span>NATTI NATASHA</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('PALOMA MAMI')">
-        <img src="img/fotos/palomamami.jpeg" alt="Paloma Mami">
-        <span>PALOMA MAMI</span>
+      <div class="artist-card" onclick="showPopup('MAFALDA CARDENAL')">
+        <img src="img/fotos/mafalda.jpeg" alt="Mafalda Cardenal">
+        <span>MAFALDA CARDENAL</span>
       </div>
       <div class="artist-card" onclick="showPopup('MELENDI')">
         <img src="img/fotos/melendi.jpeg" alt="Melendi">
         <span>MELENDI</span>
       </div>
-      <div class="artist-card" onclick="showPopup('AMAIA MONTERO')">
-        <img src="img/fotos/amaya.jpeg" alt="Amaia Montero">
-        <span>AMAIA MONTERO</span>
+      <div class="artist-card" onclick="showPopup('OMAR MONTES')">
+        <img src="img/fotos/omarmontes.jpeg" alt="Omar Montes">
+        <span>OMAR MONTES</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('RELS B')">
+        <img src="img/fotos/relsb.jpeg" alt="Rels B">
+        <span>RELS B</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('ROSALÍA')">
+        <img src="img/fotos/rosalia.webp" alt="Rosalía">
+        <span>ROSALÍA</span>
       </div>
       <div class="artist-card" onclick="showPopup('ROZALÉN')">
         <img src="img/fotos/rozalen.jpeg" alt="Rozalén">
         <span>ROZALÉN</span>
-      </div>
-      <div class="artist-card" onclick="showPopup('BB TRICKZ')">
-        <img src="img/fotos/bbtrickz.jpeg" alt="BB Trickz">
-        <span>BB TRICKZ</span>
       </div>
       <div class="artist-card" onclick="showPopup('TOKISHA')">
         <img src="img/fotos/tokisha.jpeg" alt="Tokisha">
@@ -532,77 +388,164 @@ body {
         <img src="img/fotos/vicco.jpeg" alt="Vicco">
         <span>VICCO</span>
       </div>
-      <div class="artist-card" onclick="showPopup('MILO J')">
-        <img src="img/fotos/miloj.jpeg" alt="Milo J">
-        <span>MILO J</span>
+      <div class="artist-card" onclick="showPopup('YERAI CORTÉS')">
+        <img src="img/fotos/YeraiCOrtes.jpeg" alt="Yerai Cortés">
+        <span>YERAI CORTÉS</span>
       </div>
-      <div class="artist-card" onclick="showPopup('DANI MARTÍN')">
-        <img src="img/fotos/danimartin.jpeg" alt="Dani Martín">
-        <span>DANI MARTÍN</span>
+</div>
+<div data-section="LATIN">
+      <div class="artist-card" onclick="showPopup('BAD BUNNY')">
+        <img src="img/fotos/badbunny.jpeg" alt="Bad Bunny">
+        <span>BAD BUNNY</span>
       </div>
-      <div class="artist-card" onclick="showPopup('EVALUNA')">
-        <img src="img/fotos/evaluna.jpeg" alt="Evaluna">
-        <span>EVALUNA</span>
+      <div class="artist-card" onclick="showPopup('BECKY G')">
+        <img src="img/fotos/beckyg.jpeg" alt="Becky G">
+        <span>BECKY G</span>
       </div>
-      <div class="artist-card" onclick="showPopup('EL NIÑO DE ELCHE')">
-        <img src="img/fotos/elche.jpeg" alt="El Niño de Elche">
-        <span>EL NIÑO DE ELCHE</span>
+      <div class="artist-card" onclick="showPopup('BEÉLE')">
+        <img src="img/fotos/beele.jpeg" alt="Beéle">
+        <span>BEÉLE</span>
       </div>
-      <div class="artist-card" onclick="showPopup('MANOLO GARCÍA')">
-        <img src="img/fotos/manologarcia.jpeg" alt="Manolo García">
-        <span>MANOLO GARCÍA</span>
+      <div class="artist-card" onclick="showPopup('BIZARRAP')">
+        <img src="img/fotos/bizarrap.jpeg" alt="Bizarrap">
+        <span>BIZARRAP</span>
       </div>
-      <div class="artist-card" onclick="showPopup('CARLOS RIVERA')">
-        <img src="img/fotos/carlosrivera.jpeg" alt="Carlos Rivera">
-        <span>CARLOS RIVERA</span>
+      <div class="artist-card" onclick="showPopup('CAMILO')">
+        <img src="img/fotos/camilo.jpeg" alt="Camilo">
+        <span>CAMILO</span>
       </div>
-      <div class="artist-card" onclick="showPopup('OMAR MONTES')">
-        <img src="img/fotos/omarmontes.jpeg" alt="Omar Montes">
-        <span>OMAR MONTES</span>
+      <div class="artist-card" onclick="showPopup('CATRIEL Y PACO AMOROSO')">
+        <img src="img/fotos/catrielypacoamoroso.jpeg" alt="Catriel y Paco Amoroso">
+        <span>CATRIEL Y PACO AMOROSO</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('CHRISTINA AGUILERA')">
+        <img src="img/fotos/christinaaguilera.jpeg" alt="Christina Aguilera">
+        <span>CHRISTINA AGUILERA</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('DUKI')">
+        <img src="img/fotos/duki.jpeg" alt="Duki">
+        <span>DUKI</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('EMILIA')">
+        <img src="img/fotos/emilia.jpg" alt="Emilia">
+        <span>EMILIA</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('GLORIA ESTEFAN')">
+        <img src="img/fotos/gloriaestefan.jpeg" alt="Gloria Estefan">
+        <span>GLORIA ESTEFAN</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('JENNIFER LÓPEZ')">
+        <img src="img/fotos/jenniferlopez.jpeg" alt="Jennifer López">
+        <span>JENNIFER LÓPEZ</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('JORGE DREXLER')">
+        <img src="img/fotos/jorgedrexler.jpeg" alt="Jorge Drexler">
+        <span>JORGE DREXLER</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('JULIETA VENEGAS')">
+        <img src="img/fotos/julietavenegas.jpeg" alt="Julieta Venegas">
+        <span>JULIETA VENEGAS</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('LALI')">
+        <img src="img/fotos/lali.jpeg" alt="Lali">
+        <span>LALI</span>
       </div>
       <div class="artist-card" onclick="showPopup('LUZ GAGGI')">
         <img src="img/fotos/luzgaggi.jpeg" alt="Luz Gaggi">
         <span>LUZ GAGGI</span>
       </div>
-      <div class="artist-card" onclick="showPopup('MARSHMELLO')">
-        <img src="img/fotos/marshmello.jpeg" alt="Marshmello">
-        <span>MARSHMELLO</span>
+      <div class="artist-card" onclick="showPopup('MALUMA')">
+        <img src="img/fotos/maluma.jpeg" alt="Maluma">
+        <span>MALUMA</span>
       </div>
-    </div>
-  </div>
+      <div class="artist-card" onclick="showPopup('MANUEL TURIZO')">
+        <img src="img/fotos/manuelturizo.jpg" alt="Manuel Turizo">
+        <span>MANUEL TURIZO</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('MARC ANTHONY')">
+        <img src="img/fotos/marcanthony.jpeg" alt="Marc Anthony">
+        <span>MARC ANTHONY</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('MILO J')">
+        <img src="img/fotos/miloj.jpeg" alt="Milo J">
+        <span>MILO J</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('NATALIA LAFOURCADE')">
+        <img src="img/fotos/natalialafourcade.jpeg" alt="Natalia Lafourcade">
+        <span>NATALIA LAFOURCADE</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('NATHY PELUSO')">
+        <img src="img/fotos/nathypeluso.webp" alt="Nathy Peluso">
+        <span>NATHY PELUSO</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('NATTI NATASHA')">
+        <img src="img/fotos/nattinatasha.jpeg" alt="Natti Natasha">
+        <span>NATTI NATASHA</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('NICKI NICOLE')">
+        <img src="img/fotos/nickynicole.jpeg" alt="Nicki Nicole">
+        <span>NICKI NICOLE</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('OZUNA')">
+        <img src="img/fotos/ozuna.jpeg" alt="Ozuna">
+        <span>OZUNA</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('RAUW ALEJANDRO')">
+        <img src="img/fotos/rauwalejandro.jpeg" alt="Rauw Alejandro">
+        <span>RAUW ALEJANDRO</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('RESIDENTE')">
+        <img src="img/fotos/residente.jpeg" alt="Residente">
+        <span>RESIDENTE</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('RICKY MARTIN')">
+        <img src="img/fotos/rickymartin.jpeg" alt="Ricky Martin">
+        <span>RICKY MARTIN</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('SHAKIRA')">
+        <img src="img/fotos/shakira.jpeg" alt="Shakira">
+        <span>SHAKIRA</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('THALIA')">
+        <img src="img/fotos/thalia.jpeg" alt="Thalia">
+        <span>THALIA</span>
+      </div>
+      <div class="artist-card" onclick="showPopup('TINI')">
+        <img src="img/fotos/tini.jpg" alt="Tini">
+        <span>TINI</span>
+      </div>
 </div>
-
+</div>
 
 <!-- Contacto Olga de Palma visible SIEMPRE -->
 
-<div id="lineup" class="swiper-slide slider-headings__slide" style="background-image: url('img/fotos/fondo.jpeg'); background-size: cover; background-position: center;">
+<div id="contacto" class="swiper-slide slider-headings__slide" style="background-image: url('img/gts/fondo-gts-light.jpg'); background-size: cover; background-position: center;">
   <div class="slide-content">
+<!-- Botones finales (solo en la última página): otro roster + volver a OLGADEPALMA -->
+<div class="roster-actions">
+<a href="gts/" class="roster-switch">
+  <span>Ver artistas</span>
+  <img src="img/gts/logo-gts-black.png" alt="GTS" class="roster-switch__logo">
+  <i class="fa fa-long-arrow-right"></i>
+</a>
+<a href="https://lineup.olgadepalma.com" class="roster-switch" target="_blank">
+  <span>Volver a</span>
+  <img src="img/ODP.svg" alt="Olga de Palma" class="roster-switch__logo roster-switch__logo--odp">
+  <i class="fa fa-long-arrow-right"></i>
+</a>
+</div>
     <!-- Logo en una fila superior -->
     <div class="logo-container">
-      <img src="img/OLGADEPALMA_WHITE.svg" alt="olgadepalma" class="logo__img_footer">
+      <img src="img/OLGADEPALMA.svg" alt="olgadepalma" class="logo__img_footer">
     </div>
    <!-- Información en una fila inferior -->
 <div class="footer-container">
-  <span class="footer-name">OLGADEPALMA</span>
   <a href="mailto:olga@olgadepalma.com" class="footer-link">
     <i class="fa fa-envelope"></i> olga@olgadepalma.com
   </a>
   <a href="https://instagram.com/olgadepalma" target="_blank" class="footer-link">
     <i class="fa fa-instagram"></i> @olgadepalma
   </a>
-</div>
-<!-- Botones finales (solo en la última página): otro roster + volver a OLGADEPALMA -->
-<div class="roster-actions">
-<a href="gts/" class="roster-switch">
-  <span>Ver artistas</span>
-  <img src="img/gts/logo-gts-white.png" alt="GTS" class="roster-switch__logo">
-  <i class="fa fa-long-arrow-right"></i>
-</a>
-<a href="https://lineup.olgadepalma.com" class="roster-switch" target="_blank">
-  <span>Volver a</span>
-  <img src="img/ODP_WHITE.svg" alt="Olga de Palma" class="roster-switch__logo roster-switch__logo--odp">
-  <i class="fa fa-long-arrow-right"></i>
-</a>
 </div>
   </div>
 </div>
@@ -710,6 +653,7 @@ document.addEventListener('overlayMenuClosed', function() {
 
 <script src="js/vendor.js"></script>
 <script src="js/plugins/swiper.mousewheel.min.js"></script>
+<script src="js/lineup.js"></script>
 <script src="js/components.js"></script>
 
 
