@@ -4700,9 +4700,9 @@ it-text__word {
 }
 
 .logo__img_footer {
-  width: 150px; /* Logo pequeño: el protagonismo lo tienen los botones */
+  width: 130px; /* Logo pequeño: el protagonismo lo tienen los botones */
   height: auto; /* Mantén la proporción del logo */
-  margin-bottom: 18px;
+  margin: 0;
 }
 
 /* Contenedor principal */
@@ -4739,18 +4739,22 @@ it-text__word {
 }
 
 
-/* Responsivo: apila los elementos uno debajo del otro */
+/* Responsivo: logo, mail e Instagram siguen en una sola fila, más pequeños */
 @media screen and (max-width: 768px) {
   .footer-container {
-    flex-direction: column; /* Cambia la dirección a columna */
-    gap: 15px; /* Reduce el espaciado entre los elementos */
-    align-items: center; /* Alinea los elementos a la izquierda */
-    font-weight: 100 !important; /* Texto en negrita */ 
+    gap: 14px;
+    padding: 0 10px;
+    font-weight: 100 !important;
+  }
+  .footer-link i {
+    margin-right: 4px;
+    font-size: 13px;
   }
 
   .footer-link {
-    font-size: 13px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    font-size: 11px; /* Reduce el tamaño del texto en pantallas pequeñas */
     font-weight: 100; /* Texto en negrita */
+    white-space: nowrap;
   }
 
   .footer-name {
@@ -4867,8 +4871,8 @@ body.is-last-slide .fixed-button {
     letter-spacing: 0;
   }
   .logo__img_footer {
-    width: 120px;
-    margin-bottom: 14px;
+    width: 84px;
+    margin: 0;
   }
   .roster-actions {
     margin: 0 0 44px;

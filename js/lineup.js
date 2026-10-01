@@ -48,9 +48,14 @@
         var size = Math.min(MAX_CARD, (availW - (c - 1) * m.gap) / c, (availH - (r - 1) * m.gap) / r);
         if (size < m.minCard) continue;
         var cap = c * r;
-        if (!best || cap > best.cap || (cap === best.cap && size > best.size)) {
-          best = { cols: c, rows: r, cap: cap, size: Math.floor(size) };
-        }
+        var cand = { cols: c, rows: r, cap: cap, size: Math.floor(size) };
+        var fits = cap >= items.length; // cabe todo en una página: mejor tarjetas grandes que filas casi vacías
+        var bestFits = best && best.cap >= items.length;
+        var better = !best ||
+          (fits && !bestFits) ||
+          (fits && bestFits ? cand.size > best.size || (cand.size === best.size && cap < best.cap)
+                            : !bestFits && (cap > best.cap || (cap === best.cap && cand.size > best.size)));
+        if (better) best = cand;
       }
     }
     if (!best) { // pantalla diminuta: lo que quepa
