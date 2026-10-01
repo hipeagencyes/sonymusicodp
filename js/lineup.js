@@ -46,18 +46,16 @@
     g.items.push(it);
   });
 
-  // Tamaños de página de cada sección (repartidos por igual)
+  // Tamaños de página de cada sección: todas llenas y solo la última queda con lo que sobre
   function pageSizes(cap) {
     var sizes = [];
     groups.forEach(function (g) {
-      var count = Math.ceil(g.items.length / cap);
-      var per = Math.ceil(g.items.length / count);
-      for (var i = 0; i < g.items.length; i += per) sizes.push(Math.min(per, g.items.length - i));
+      for (var left = g.items.length; left > 0; left -= cap) sizes.push(Math.min(cap, left));
     });
     return sizes;
   }
 
-  // Elige columnas/filas: menos páginas; luego filas completas (sin 3 sueltos abajo); luego tarjetas más grandes
+  // Elige columnas/filas: menos páginas; luego última página con filas completas; luego tarjetas más grandes
   function chooseLayout(m) {
     var availW = m.w - 2 * m.padX;
     var availH = m.h - m.padTop - m.padBottom - (hasSections ? LABEL_H + m.gap : 0);
@@ -83,16 +81,14 @@
     return best;
   }
 
-  // Cada sección en las páginas que necesite, repartidas por igual (17+17 mejor que 21+13)
+  // Cada sección en las páginas que necesite; todas llenas salvo la última de la sección
   function paginate(L) {
     var pages = [];
     groups.forEach(function (g) {
-      var count = Math.ceil(g.items.length / L.cap);
-      var per = Math.ceil(g.items.length / count);
-      for (var i = 0; i < g.items.length; i += per) {
+      for (var i = 0; i < g.items.length; i += L.cap) {
         var nodes = [];
         if (g.section) nodes.push({ label: g.section });
-        g.items.slice(i, i + per).forEach(function (it) { nodes.push({ card: it.el }); });
+        g.items.slice(i, i + L.cap).forEach(function (it) { nodes.push({ card: it.el }); });
         pages.push({ nodes: nodes });
       }
     });
