@@ -46,11 +46,18 @@
     g.items.push(it);
   });
 
-  function pageCount(cap) {
-    return groups.reduce(function (n, g) { return n + Math.ceil(g.items.length / cap); }, 0);
+  // Tamaños de página de cada sección (repartidos por igual)
+  function pageSizes(cap) {
+    var sizes = [];
+    groups.forEach(function (g) {
+      var count = Math.ceil(g.items.length / cap);
+      var per = Math.ceil(g.items.length / count);
+      for (var i = 0; i < g.items.length; i += per) sizes.push(Math.min(per, g.items.length - i));
+    });
+    return sizes;
   }
 
-  // Elige columnas/filas: las que dan menos páginas; a igualdad, las tarjetas más grandes
+  // Elige columnas/filas: menos páginas; luego filas completas (sin 3 sueltos abajo); luego tarjetas más grandes
   function chooseLayout(m) {
     var availW = m.w - 2 * m.padX;
     var availH = m.h - m.padTop - m.padBottom - (hasSections ? LABEL_H + m.gap : 0);
@@ -60,8 +67,12 @@
         var size = Math.min(MAX_CARD, (availW - (c - 1) * m.gap) / c, (availH - (r - 1) * m.gap) / r);
         if (size < m.minCard) continue;
         var cand = { cols: c, rows: r, cap: c * r, size: Math.floor(size) };
-        cand.pages = pageCount(cand.cap);
-        if (!best || cand.pages < best.pages || (cand.pages === best.pages && cand.size > best.size)) best = cand;
+        var sizes = pageSizes(cand.cap);
+        cand.pages = sizes.length;
+        cand.ragged = sizes.filter(function (n) { return n % c !== 0; }).length;
+        if (!best || cand.pages < best.pages ||
+            (cand.pages === best.pages && (cand.ragged < best.ragged ||
+              (cand.ragged === best.ragged && cand.size > best.size)))) best = cand;
       }
     }
     if (!best) { // pantalla diminuta: lo que quepa
@@ -131,5 +142,46 @@
       var m2 = metrics(), L2 = chooseLayout(m2);
       if (L2.cols !== L.cols || L2.cap !== L.cap || Math.abs(L2.size - L.size) > 12) window.location.reload();
     }, 300);
+  });
+
+  // Nombres en una sola línea: se reduce la letra hasta que quepa; si ni así cabe, el nombre se desliza
+  function fitLabels() {
+    var minFont = 8;
+    Array.prototype.forEach.call(document.querySelectorAll('.artist-card span'), function (label) {
+      var inner = label.firstElementChild;
+      if (!inner) {
+        inner = document.createElement('em'); // no <span>: los estilos de .artist-card span son para la etiqueta
+        inner.className = 'artist-card__name';
+        inner.textContent = label.textContent;
+        label.textContent = '';
+        label.appendChild(inner);
+      }
+      label.classList.remove('is-scrolling');
+      label.style.fontSize = '';
+      inner.style.removeProperty('--shift');
+      inner.style.removeProperty('--dur');
+      var cs = getComputedStyle(label);
+      var avail = label.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (avail <= 0) return;
+      var size = parseFloat(cs.fontSize);
+      while (inner.scrollWidth > avail && size > minFont) {
+        size -= 0.5;
+        label.style.fontSize = size + 'px';
+      }
+      var overflow = inner.scrollWidth - avail;
+      if (overflow > 1) {
+        label.classList.add('is-scrolling');
+        inner.style.setProperty('--shift', Math.ceil(overflow) + 'px');
+        inner.style.setProperty('--dur', Math.max(3, overflow / 18 + 2) + 's');
+      }
+    });
+  }
+  window.addEventListener('load', function () {
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fitLabels);
+  });
+  var fitTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(fitTimer);
+    fitTimer = setTimeout(fitLabels, 200);
   });
 })();

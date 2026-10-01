@@ -4916,3 +4916,73 @@ body.is-last-slide .fixed-button {
 .swiper-container-vertical > .swiper-wrapper {
   flex-direction: column;
 }
+
+/* Filtro común sobre las fotos para unificar color y estilo: color apagado con un tono cálido parejo
+   (--photo-gray: 1 = blanco y negro, 0 = color original; --photo-tone: intensidad del tono) */
+.artist-card img {
+  --photo-gray: 0.3;
+  --photo-tone: 0.15;
+  filter: grayscale(var(--photo-gray)) sepia(var(--photo-tone)) contrast(1.06) saturate(1.05) brightness(1.02);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+@media (hover: hover) {
+  .artist-card:hover img {
+    filter: none; /* al pasar el ratón recupera el color original */
+  }
+}
+
+/* Botones finales: más pequeños y siempre en la misma línea */
+.roster-actions {
+  flex-wrap: nowrap;
+}
+.roster-switch {
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  gap: 10px;
+}
+.roster-switch__logo { height: 22px; }
+.roster-switch__logo--sony { height: 20px; }
+.roster-switch__logo--odp { height: 12px; }
+@media screen and (max-width: 768px) {
+  .roster-actions {
+    flex-direction: row;
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .roster-switch {
+    padding: 6px 11px;
+    font-size: 0.62rem;
+    gap: 5px;
+    white-space: nowrap;
+  }
+  .roster-switch .fa { display: none; }
+  .roster-switch__logo { height: 14px; }
+  .roster-switch__logo--sony { height: 12px; }
+  .roster-switch__logo--odp { height: 8px; }
+}
+
+/* Nombre de artista: siempre una línea y misma altura en todas las tarjetas */
+.artist-card span {
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 1.5;
+}
+.artist-card__name {
+  font-style: normal;
+  display: inline-block;
+  white-space: nowrap;
+}
+/* Si el nombre no cabe ni con la letra más pequeña, se desliza dentro del recuadro */
+.artist-card span.is-scrolling {
+  text-align: left;
+}
+.artist-card span.is-scrolling .artist-card__name {
+  animation: artist-name-scroll var(--dur, 4s) ease-in-out infinite alternate;
+}
+@keyframes artist-name-scroll {
+  0%, 20% { transform: translateX(0); }
+  80%, 100% { transform: translateX(calc(-1 * var(--shift, 0px))); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .artist-card span.is-scrolling .artist-card__name { animation: none; }
+}
