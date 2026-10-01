@@ -4514,6 +4514,7 @@ it-text__word {
   --gap: 20px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* las filas incompletas quedan centradas, sin hueco a un lado */
   align-content: center;
   gap: var(--gap);
   width: calc(var(--cols) * var(--card) + (var(--cols) - 1) * var(--gap));
@@ -4798,13 +4799,13 @@ it-text__word {
 .roster-switch {
   display: inline-flex;
   align-items: center;
-  gap: 16px;
-  padding: 20px 44px;
+  gap: 12px;
+  padding: 13px 30px;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 60px;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   font-weight: 300;
   letter-spacing: 0.03em;
   text-decoration: none;
@@ -4818,11 +4819,11 @@ it-text__word {
   opacity: 1;
 }
 .roster-switch__logo {
-  height: 38px;
+  height: 28px;
   width: auto;
 }
 .roster-switch__logo--sony {
-  height: 34px;
+  height: 25px;
 }
 
 /* Contenedor de los botones finales */
@@ -4835,7 +4836,7 @@ it-text__word {
   margin: 0 0 70px;
 }
 .roster-switch__logo--odp {
-  height: 20px;
+  height: 15px;
 }
 
 /* En la última página el botón "Volver" fijo de arriba se oculta (está abajo) */
@@ -4875,18 +4876,19 @@ body.is-last-slide .fixed-button {
     margin: 0;
   }
   .roster-actions {
-    margin: 0 0 44px;
+    margin: 0 0 34px;
+    gap: 10px;
     flex-direction: column;
     gap: 12px;
   }
   .roster-switch {
-    padding: 13px 26px;
-    font-size: 0.95rem;
-    gap: 10px;
+    padding: 7px 16px;
+    font-size: 0.72rem;
+    gap: 6px;
   }
-  .roster-switch__logo { height: 26px; }
-  .roster-switch__logo--sony { height: 22px; }
-  .roster-switch__logo--odp { height: 14px; }
+  .roster-switch__logo { height: 17px; }
+  .roster-switch__logo--sony { height: 15px; }
+  .roster-switch__logo--odp { height: 9px; }
 }
 
 /* Móvil: el slider es vertical, así que los puntos pasan a un lateral */

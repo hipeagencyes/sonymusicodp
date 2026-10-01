@@ -34,11 +34,23 @@
       padX: mobile ? 16 : (w <= 1024 ? 50 : 60),
       padTop: mobile ? 64 : 70,
       padBottom: mobile ? 56 : 70,
-      minCard: small ? 88 : 150
+      minCard: small ? 88 : 140
     };
   }
 
-  // Elige columnas/filas: la mayor cantidad de tarjetas por página sin bajar del tamaño mínimo
+  // Secciones en orden, cada una con sus artistas (una sección nunca comparte página con otra)
+  var groups = [];
+  items.forEach(function (it) {
+    var g = groups[groups.length - 1];
+    if (!g || g.section !== it.section) { g = { section: it.section, items: [] }; groups.push(g); }
+    g.items.push(it);
+  });
+
+  function pageCount(cap) {
+    return groups.reduce(function (n, g) { return n + Math.ceil(g.items.length / cap); }, 0);
+  }
+
+  // Elige columnas/filas: las que dan menos páginas; a igualdad, las tarjetas más grandes
   function chooseLayout(m) {
     var availW = m.w - 2 * m.padX;
     var availH = m.h - m.padTop - m.padBottom - (hasSections ? LABEL_H + m.gap : 0);
@@ -47,58 +59,38 @@
       for (var r = 1; r <= 8; r++) {
         var size = Math.min(MAX_CARD, (availW - (c - 1) * m.gap) / c, (availH - (r - 1) * m.gap) / r);
         if (size < m.minCard) continue;
-        var cap = c * r;
-        var cand = { cols: c, rows: r, cap: cap, size: Math.floor(size) };
-        var fits = cap >= items.length; // cabe todo en una página: mejor tarjetas grandes que filas casi vacías
-        var bestFits = best && best.cap >= items.length;
-        var better = !best ||
-          (fits && !bestFits) ||
-          (fits && bestFits ? cand.size > best.size || (cand.size === best.size && cap < best.cap)
-                            : !bestFits && (cap > best.cap || (cap === best.cap && cand.size > best.size)));
-        if (better) best = cand;
+        var cand = { cols: c, rows: r, cap: c * r, size: Math.floor(size) };
+        cand.pages = pageCount(cand.cap);
+        if (!best || cand.pages < best.pages || (cand.pages === best.pages && cand.size > best.size)) best = cand;
       }
     }
     if (!best) { // pantalla diminuta: lo que quepa
-      var c2 = 2, s2 = Math.floor((availW - m.gap) / 2);
-      best = { cols: c2, rows: Math.max(1, Math.floor((availH + m.gap) / (s2 + m.gap))), size: s2 };
+      var s2 = Math.floor((availW - m.gap) / 2);
+      var r2 = Math.max(1, Math.floor((availH + m.gap) / (s2 + m.gap)));
+      best = { cols: 2, rows: r2, cap: 2 * r2, size: s2 };
     }
-    best.availH = m.h - m.padTop - m.padBottom;
     return best;
   }
 
-  // Reparte en páginas; cada página empieza con la etiqueta de la sección que continúa
-  function paginate(L, m) {
-    var pages = [], cur = null;
-    function newPage(section) {
-      cur = { nodes: [], h: 0, col: 0, section: section };
-      pages.push(cur);
-      if (section) { cur.nodes.push({ label: section }); cur.h = LABEL_H; }
-    }
-    items.forEach(function (it) {
-      if (!cur) newPage(it.section);
-      if (it.section !== cur.section) {
-        if (cur.h + m.gap + LABEL_H + m.gap + L.size > L.availH) newPage(it.section);
-        else {
-          cur.nodes.push({ label: it.section });
-          cur.h += m.gap + LABEL_H;
-          cur.col = 0;
-          cur.section = it.section;
-        }
+  // Cada sección en las páginas que necesite, repartidas por igual (17+17 mejor que 21+13)
+  function paginate(L) {
+    var pages = [];
+    groups.forEach(function (g) {
+      var count = Math.ceil(g.items.length / L.cap);
+      var per = Math.ceil(g.items.length / count);
+      for (var i = 0; i < g.items.length; i += per) {
+        var nodes = [];
+        if (g.section) nodes.push({ label: g.section });
+        g.items.slice(i, i + per).forEach(function (it) { nodes.push({ card: it.el }); });
+        pages.push({ nodes: nodes });
       }
-      if (cur.col === 0) {
-        var need = (cur.h > 0 ? m.gap : 0) + L.size;
-        if (cur.h + need > L.availH) { newPage(it.section); need = (cur.h > 0 ? m.gap : 0) + L.size; }
-        cur.h += need;
-      }
-      cur.nodes.push({ card: it.el });
-      cur.col = (cur.col + 1) % L.cols;
     });
     return pages;
   }
 
   var m = metrics();
   var L = chooseLayout(m);
-  var pages = paginate(L, m);
+  var pages = paginate(L);
   var bg = anchor.style.backgroundImage;
 
   pages.forEach(function (page, i) {
